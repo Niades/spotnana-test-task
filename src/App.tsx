@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import type { ReactNode } from 'react'
 import styles from './App.module.css'
 import { Button } from '../src/components/button'
@@ -12,11 +13,12 @@ const Container: React.FC<ContainerProps> = (props) => {
   return <div className={styles.container}>{children}</div>
 }
 
-function App() {
+const App: React.FC = () => {
+  const [cntrValue, setCntrValue] = useState<number>(0);
   return (
     <Container>
-      <Counter />
-      <Button>Press me!</Button>
+      <Counter value={cntrValue} />
+      <Button onClick={() => setCntrValue(cntrValue + 1)}>Press me!</Button>
     </Container>
   )
 }

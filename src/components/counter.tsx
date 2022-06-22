@@ -1,8 +1,10 @@
-import { useState } from 'react'
 import styles from './counter.module.css'
 
-const Counter: React.FC = () => {
-  const [value] = useState<number>(0)
+type CounterProps = {
+  value: number,
+};
+
+const Counter: React.FC<CounterProps> = ({value}) => {
   return <span className={styles.counter}>{value}</span>
 }
 
