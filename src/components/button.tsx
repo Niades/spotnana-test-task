@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import styles from './button.module.css'
 
 type ButtonProps = {
-  onClick: (e: MouseEvent) => void,
+  onClick: (e: MouseEvent) => void
   children: ReactNode
 }
 

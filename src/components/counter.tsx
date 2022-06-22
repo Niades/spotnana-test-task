@@ -1,10 +1,10 @@
 import styles from './counter.module.css'
 
 type CounterProps = {
-  value: number,
-};
+  value: number
+}
 
-const Counter: React.FC<CounterProps> = ({value}) => {
+const Counter: React.FC<CounterProps> = ({ value }) => {
   return <span className={styles.counter}>{value}</span>
 }
 
