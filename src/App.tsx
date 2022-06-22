@@ -7,7 +7,7 @@ import { Button } from '../src/components/button'
 import { Counter } from '../src/components/counter'
 import { Trophy } from './components/trophy'
 
-const IDLE_TIMEOUT = 3000
+const IDLE_TIMEOUT = 10000
 const CLICK_THROTTLE = 333
 const OVERDRIVE_CHANCE = 5 // in %
 const OVERDRIVE_LENGTH = 10 // in seconds
@@ -65,7 +65,7 @@ const App: React.FC = () => {
           console.log({
             newValue,
             cntrValue,
-            newV: newValue + (newValue - cntrValue) * 2
+            newV: newValue + (newValue - cntrValue) * 2,
           })
           setCntrValue(cntrValue + (newValue - cntrValue) * 2)
         }
@@ -123,7 +123,7 @@ const App: React.FC = () => {
           console.log('[useEffect-Overdrive]: turning off overdrive')
           setInoverdrive(false)
         }, OVERDRIVE_LENGTH * 1000)
-        console.log({timeout: OVERDRIVE_LENGTH * 1000})
+        console.log({ timeout: OVERDRIVE_LENGTH * 1000 })
       }
       console.log('[useEffect-Overdrive]: restarting overdrive timeout')
       restartOverdriveTimeout()
@@ -132,7 +132,6 @@ const App: React.FC = () => {
       console.log("[useEffect-Overdrive]: didn't enter")
     }
     return () => {
-
       //window.clearTimeout(overDriveTimeout)
     }
   }, [cntrValue])
