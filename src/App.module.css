@@ -14,3 +14,10 @@
   justify-content: center;
   flex-direction: column;
 }
+
+.timer {
+  color: #c091ca;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
