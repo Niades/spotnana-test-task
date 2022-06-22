@@ -8,6 +8,7 @@ import { Counter } from '../src/components/counter'
 import { Trophy } from './components/trophy'
 
 const IDLE_TIMEOUT = 3000
+const CLICK_THROTTLE = 333
 const PALETTE = ['#DEC5E3', '#CDEDFD', '#B6DCFE', '#B6DCFE', '#81F7E5']
 
 type ContainerProps = {
@@ -29,13 +30,16 @@ const App: React.FC = () => {
   const setCounterValue = useCallback(
     (newValue: number): void => {
       // Trophy code
-      console.log("[useCallback - setCounterValue]: newValue < cntrValue ===", newValue < cntrValue);
-      console.log("[useCallback - setCounterValue]:", {newValue, cntrValue});
-      if(newValue < cntrValue) {
-        setTrophyVisible(false);
-      } else if(newValue !== 0 && newValue % 10 === 0) {
-        setTrophyVisible(true);
-      } 
+      console.log(
+        '[useCallback - setCounterValue]: newValue < cntrValue ===',
+        newValue < cntrValue,
+      )
+      console.log('[useCallback - setCounterValue]:', { newValue, cntrValue })
+      if (newValue < cntrValue) {
+        setTrophyVisible(false)
+      } else if (newValue !== 0 && newValue % 10 === 0) {
+        setTrophyVisible(true)
+      }
       if (newValue < 0) {
         newValue = 0
       }
@@ -79,15 +83,14 @@ const App: React.FC = () => {
       decreasingInterval = -1
     }
   }, [cntrValue, setCounterValue])
-  const btnOnClick = useCallback(() => {
+  const btnOnClick = useCallback(throttle(CLICK_THROTTLE, () => {
     setCounterValue(cntrValue + 1)
-  }, [cntrValue, setCounterValue])
-  const throttledBtnOnClick = throttle(333, btnOnClick)
+  }), [cntrValue, setCounterValue])
   return (
     <Container>
       <Trophy visible={trophyVisible} />
       <Counter value={cntrValue} />
-      <Button color={btnColor} onClick={throttledBtnOnClick}>
+      <Button color={btnColor} onClick={btnOnClick}>
         Press me!
       </Button>
     </Container>
