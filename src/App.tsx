@@ -8,8 +8,8 @@ type ContainerProps = {
 }
 
 const Container: React.FC<ContainerProps> = (props) => {
-  const { children } = props;
-  return (<div className={styles.container}>{children}</div>)
+  const { children } = props
+  return <div className={styles.container}>{children}</div>
 }
 
 function App() {
